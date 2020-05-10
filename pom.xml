@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.stackroute</groupId>
-	<artifactId>newz-step6-boilerplate</artifactId>
+	<artifactId>final-integration</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>newz-step6-boilerplate</name>
-	<description>project for Spring Boot NewzApp Step6 using Eureka server and Zuul API </description>
+	<name>final-integration</name>
+	<description>project for Spring Boot NewzApp final using Eureka server and Zuul API </description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
