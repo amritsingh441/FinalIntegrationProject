@@ -9,43 +9,76 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions/CardActions';
 import Container from '@material-ui/core/Container/Container';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import UpdateUserProfile from '../profile/UpdateUserProfile';
 
 const useStyles = makeStyles({
     media: {
       height: '40vh',
     },
+    table: {
+        minWidth: 650,
+      },
   });
 
 const DisplayUserProfile = (props:any) => {  
     const classes = useStyles();  
 
 return <Grid item xs={12} container direction = "row" alignItems="center" justify="space-evenly">
-    <Container>
-            <CardContent>
-            <Typography id = "tHeader1" component="h6" variant="body2" color="textSecondary">
-                User Profile Data 
-                </Typography>
-                <Typography id = "tHeader2" component="p" variant="body2" color="textSecondary">
-                User Name : {props.uData.userId} 
-                </Typography>
-                <Typography id = "tHeader3" component="p" variant="body2" color="textSecondary">
-                First Name : {props.uData.firstName}
-                </Typography>
-                <Typography id = "tHeader4" component="p" variant="body2" color="textSecondary">
-                Last Name : {props.uData.lastName}
-                </Typography>
-                <Typography id = "tHeader5" component="p" variant="body2" color="textSecondary">
-                Mobile Number : {props.uData.contact}
-                </Typography>
-                <Typography id = "tHeader6" component="p" variant="body2" color="textSecondary">
-               Email Id : {props.uData.email}
-                </Typography>
-                <CardActions>
-              <UpdateUserProfile userProfileData={props.uData} refreshUserProfileUpdate={props.refreshUserProfileUpdate}/>
-             </CardActions>  
-            </CardContent>
-        </Container>
+        <Container>
+        <Typography id = "tHeader2" component="div" variant="h6" color="textPrimary">
+        User Profile Data
+        </Typography>
+        <TableContainer component={Paper}>
+      <Table className={classes.table} size="small" aria-label="a dense table">
+        <TableBody>
+                <TableRow></TableRow>
+            <TableRow>
+              <TableCell component="th" scope="row">
+              <b>User Name : </b>
+              </TableCell>
+              <TableCell>{props.uData.userId}</TableCell>
+              </TableRow>
+              <TableRow>
+              <TableCell component="th" scope="row">
+              <b>First Name : </b>
+              </TableCell>
+              <TableCell>{props.uData.firstName}</TableCell>
+              </TableRow>
+              <TableRow>
+              <TableCell component="th" scope="row">
+              <b>Last Name : </b>
+              </TableCell>
+              <TableCell>{props.uData.lastName}</TableCell>
+              </TableRow>
+              <TableRow>
+              <TableCell component="th" scope="row">
+              <b>Mobile Number : </b>
+              </TableCell>
+              <TableCell>{props.uData.contact}</TableCell>
+              </TableRow>
+              <TableRow>
+              <TableCell component="th" scope="row">
+              <b>Email Id : </b>
+              </TableCell>
+              <TableCell>{props.uData.email}</TableCell>
+            </TableRow>
+            <TableRow>
+            <TableCell align="left"> 
+            <UpdateUserProfile userProfileData={props.uData} refreshUserProfileUpdate={props.refreshUserProfileUpdate}/>
+            </TableCell>
+            </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+    </Container>
+
    </Grid> 
 }
 
