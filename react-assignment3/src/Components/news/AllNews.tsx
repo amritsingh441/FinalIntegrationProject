@@ -10,11 +10,13 @@ const AllNews = (props:any) => {
       const [news, setNews] = useState<News[]>([]);
       const displayNewsData = DisplayNewsService();
       displayNewsData.then(res => {
-            let newsObjList = [...res];
-            console.log("newsObjList data in AllNews Component :::"+newsObjList);
-            if (news.length === 0) {
-                  setNews(newsObjList)
-            }
+            if(res){
+                  let newsObjList = [...res];
+                  console.log("newsObjList data in AllNews Component :::"+newsObjList);
+                  if (news.length === 0) {
+                        setNews(newsObjList)
+                  }
+            }    
       })
       const refreshNewsAfterUpdate =(updatedNewsObjList:any) => {
             console.log("news data in refreshNewsAfterUpdate before AllNews Component:::"+JSON.stringify(news));
@@ -25,9 +27,18 @@ const AllNews = (props:any) => {
           }
 
       console.log("news data in AllNews Component:::"+JSON.stringify(news));
-       let newsCardsList = news.map((newsData: News) =>
-            <DisplayNewsCard key={newsData.urlToImage} nData={newsData} refreshNewsAfterUpdate={refreshNewsAfterUpdate}></DisplayNewsCard>)
-  
+      let newsCardsList;
+      if(news.length>0){
+            newsCardsList = news.map((newsData: News) =>
+            <DisplayNewsCard  nData={newsData} refreshNewsAfterUpdate={refreshNewsAfterUpdate}></DisplayNewsCard>)
+            //removing code key={newsData.urlToImage}
+      }else{
+            newsCardsList = <Typography id = "tHeader2" component="div" variant="h6" color="textPrimary">
+            No News Data To Display ...
+            </Typography>     
+      }
+      
+            
       return (
             <Grid container  direction = "row" item sm={12} alignItems="center" justify="space-evenly" style={{marginTop:'16vh'}}>
                         {newsCardsList}

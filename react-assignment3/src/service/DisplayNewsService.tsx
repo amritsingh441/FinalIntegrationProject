@@ -1,9 +1,9 @@
 import News from '../model/News';
 
-const DisplayNewsService = async () => {
+const DisplayNewsService = () => {
     let url = "http://localhost:8091/NewsService/api/v1/news/"+localStorage.getItem("UserName");
     console.log("Url value in DisplayNewsService :: "+url)
-    return await  fetch(url,{
+    return  fetch(url,{
         method:'GET',
         headers : {
             'Content-Type': "application/json",
@@ -13,9 +13,10 @@ const DisplayNewsService = async () => {
         }
     }).then(resp => {
         console.log("resp json data::: "+JSON.stringify(resp));
-        return resp.json();
+        return resp;
     }).then(data => {
         let cardList: any = [];
+        if(data){
         Array.prototype.forEach.call(data,(data:News)  => {
                 console.log(" data inside Display news service::: "+JSON.stringify(data));
                 let newsObj = new News(
@@ -29,10 +30,9 @@ const DisplayNewsService = async () => {
                 console.log("newsObj inside DisplayNewsService::: "+JSON.stringify(newsObj));
                 cardList.push(newsObj)        
         })
+    }
         return cardList;
-    }).catch(error => {
-        throw new error("something went wrong...")
-    });
+    })
 }
 
 export default DisplayNewsService;

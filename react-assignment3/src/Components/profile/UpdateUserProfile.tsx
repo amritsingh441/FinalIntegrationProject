@@ -79,7 +79,7 @@ handleClose();
 }
   const [labelWidth, setLabelWidth] = useState(0);
     return (<div>
-    <Button size="small" variant="contained" onClick={handleClickOpen}>
+    <Button size="small" variant="contained" color="primary" onClick={handleClickOpen}>
         Update User Profile
       </Button>
        <Dialog
