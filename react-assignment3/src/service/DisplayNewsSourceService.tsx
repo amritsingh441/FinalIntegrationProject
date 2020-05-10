@@ -17,9 +17,10 @@ const DisplayNewsSourceService = async () => {
     }).then(data => {
         console.log(" data before then in DisplayNewsSourceService ::: "+JSON.stringify(data));
         let cardList: any = [];
+        if(data){
         Array.prototype.forEach.call(data,(data:NewsSource)  => {
             console.log(" data inside DisplayNewsSourceService::: "+JSON.stringify(data));
-            if(data!=undefined && JSON.stringify(data)!=JSON.stringify({})){
+           // if(data!=undefined && JSON.stringify(data)!=JSON.stringify({})){
                 let newsSrcObj = new NewsSource(
                     data.newsSourceId, 
                     data.newsSourceName,
@@ -28,14 +29,12 @@ const DisplayNewsSourceService = async () => {
                 );
                 console.log("newsSrcObj inside DisplayNewsSourceService::: "+JSON.stringify(newsSrcObj));
                 cardList.push(newsSrcObj)
-            }
+           // }
             
         })
+    }
         return cardList;
-    }).catch(error => {
-        throw new Error("Something went wrong.....");
-        //Promise.reject("Some issue ....")
-    });
+    })
 }
 
 export default DisplayNewsSourceService;

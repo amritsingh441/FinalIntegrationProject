@@ -1,9 +1,9 @@
 import News from '../model/News';
 
-const DisplayNewsService = () => {
+const DisplayNewsService = async () => {
     let url = "http://localhost:8091/NewsService/api/v1/news/"+localStorage.getItem("UserName");
     console.log("Url value in DisplayNewsService :: "+url)
-    return  fetch(url,{
+    return await  fetch(url,{
         method:'GET',
         headers : {
             'Content-Type': "application/json",
@@ -13,7 +13,7 @@ const DisplayNewsService = () => {
         }
     }).then(resp => {
         console.log("resp json data::: "+JSON.stringify(resp));
-        return resp;
+        return resp.json();
     }).then(data => {
         let cardList: any = [];
         if(data){
