@@ -1,5 +1,7 @@
 package com.stackroute.userprofile.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,16 +59,17 @@ public class UserProfileController {
 	@CrossOrigin(origins="http://localhost:3000")
 	@PostMapping("/user")
 	public ResponseEntity<?> addUserProfile(@RequestBody UserProfile user){
-
+		user.setCreatedAt();
 		try {
 			UserProfile profile= userProfileService.registerUser(user);
 			if(profile!=null) {
-				return new ResponseEntity<>(HttpStatus.CREATED);
+				return new ResponseEntity<>(profile,HttpStatus.CREATED);
 			}
 		} catch (UserProfileAlreadyExistsException e) {
-			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 		return new ResponseEntity<>(HttpStatus.CONFLICT);
+		
 	}
 
 	/*

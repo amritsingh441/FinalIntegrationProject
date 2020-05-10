@@ -42,12 +42,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 	 */
 
 	public UserProfile registerUser(UserProfile user) throws UserProfileAlreadyExistsException {
-		
-		UserProfile uProf = userProfileRepository.insert(user);
-		if(uProf==null) {
+		Optional<UserProfile> usrProf = userProfileRepository.findById(user.getUserId());
+		if(usrProf.isPresent()) {
 			throw new UserProfileAlreadyExistsException("User Profile already existed");
+		}else {
+			return userProfileRepository.save(user);
 		}
-		return uProf;
 	}
 
 	/*
