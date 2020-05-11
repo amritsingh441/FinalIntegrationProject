@@ -5,7 +5,6 @@ export const LoginService = async (user:User) => {
         "userId":user.username,
         "password": user.password
        }
-       console.log("user data in login service :: "+JSON.stringify(userLoginData))
     let url = 'http://localhost:8091/AuthenticationService/api/v1/auth/login';
     const response = await fetch(url,{
         method:'POST',
@@ -16,5 +15,10 @@ export const LoginService = async (user:User) => {
         },
         body:JSON.stringify(userLoginData)
     })
-    return await response.json();
+    if(response.ok){
+        return response.json();
+    }else{
+        return response;
+    }
+   
 }

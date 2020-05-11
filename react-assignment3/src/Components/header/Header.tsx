@@ -32,8 +32,8 @@ if(props.token){
           <Button size="small" variant="contained" id="displayAllNewsBtn"  onClick ={() => handlePageUpdate("AllNews")}>News</Button>
           <Button size="small" variant="contained" id="displayAllNewsSrcBtn"  onClick ={() => handlePageUpdate("AllNewsSource")}>News Source</Button>
           <Button size="small" variant="contained" id="logoutBtn"  onClick ={() => handleLogout()}>Logout</Button>   
-          <Typography id = "tHeader11" component="div" variant="h6" align="center" className={classes.profileCls} onClick={() => handlePageUpdate("UserProfile")}>
-            Welcome {props.userName}
+          <Typography id = "tHeader11" component="div" variant="h6" align="center" className={classes.profileCls}>
+          <Link href="#" onClick={() => handlePageUpdate("UserProfile")}>Welcome {props.userName}</Link>
          </Typography>
          
           </Grid>

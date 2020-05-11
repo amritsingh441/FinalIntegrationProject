@@ -34,11 +34,17 @@ const Login = (props:any) =>{
 
     const handleLogin = () => {
         const user = new User(username,password);
-        const auth = LoginService(user);
-        auth.then((data) => {
-            props.updateToken(data.token);
-            props.updateUserName(username);
-        })
+         const auth = LoginService(user);
+             auth.then((data) => {
+                console.log("checking data property in login ..."+data.ok)
+                 if(data.ok !== undefined && data.ok === false){
+                    alert("Unauthorized User ...")
+                 }else{
+                    props.updateToken(data.token);
+                    props.updateUserName(username);  
+                 }
+                 
+             })   
     }
 
     return <div className = {classes.root}>

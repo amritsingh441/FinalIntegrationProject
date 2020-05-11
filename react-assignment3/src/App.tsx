@@ -16,7 +16,7 @@ import {
 
 function App() {
   const [token,setToken] = useState('');
-  const [page,setPage] = useState('Dashboard');
+  const [page,setPage] = useState('Login');
   const [userName,setUserName] = useState('');
 
   const updateToken =(token:string) => {
