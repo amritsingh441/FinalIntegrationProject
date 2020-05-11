@@ -28,8 +28,6 @@ const UserProfileData = () => {
       let userProfileData;
   if(userProfile !== undefined){
       userProfileData  =  <DisplayUserProfile key={userProfile.userId} uData={userProfile} refreshUserProfileUpdate={refreshUserProfileUpdate}/>
-  }else{
-      userProfileData = "Something Went Wrong......";
   }
    
       return (
