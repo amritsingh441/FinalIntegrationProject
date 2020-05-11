@@ -86,6 +86,9 @@ const handleRegistration = () => {
               alert("User registration failed...")
             }
           })
+        }else{
+          alert("User Already Exists...")
+          
         }
         })
         handleClose();      
