@@ -10,6 +10,10 @@ import DashboardNews from '../model/DashboardNews';
         "newsSourceDesc":news.description,
         "newsSourceCreatedBy":localStorage.getItem("UserName"),
     }
+    let reminderData = {
+        "reminderId":news.newsId,
+        "schedule": new Date(),
+    }
     let newsData = {
         "newsId":news.newsId,
         "title": news.title,
@@ -17,7 +21,9 @@ import DashboardNews from '../model/DashboardNews';
         "description":news.description,
         "urlToImage": news.urlToImage,
         "newsSource":newsSourceData,
+        "reminder":reminderData,
        };
+       console.log("final newsData in AddNewsService :: "+JSON.stringify(newsData));
    return await fetch(url,{
         method:'POST',
         body:JSON.stringify(newsData),

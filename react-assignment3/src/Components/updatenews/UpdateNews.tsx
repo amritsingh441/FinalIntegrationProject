@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 const UpdateNews = (props:any) => {
+  console.log("props inside UpdateNews Component ... "+JSON.stringify(props))
     const [open,setOpen] = useState(false);
     const [title,setTitle]=useState(props.newsData.title)
     const [description,setDescription]=useState(props.newsData.description)
@@ -48,8 +49,10 @@ const handleUpdateNews = () =>{
       "author":localStorage.getItem("UserName"),
       "description":description,
       "urlToImage": props.newsData.urlToImage,
-      "newsSource":props.newsData.newsSourceData,
+      "newsSource":props.newsData.newssource,
+      "reminder":props.newsData.reminder,
   }
+  console.log("updated news data in UpdateNewsComp .."+JSON.stringify(updateNewsObj))
     const updateNews = UpdateNewsService(updateNewsObj);
     updateNews.then(response => {
       if(response['status'] === 200){

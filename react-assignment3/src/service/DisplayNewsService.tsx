@@ -21,15 +21,18 @@ const DisplayNewsService = async () => {
     }).then(data => {
         let cardList: any = [];
         if(data){
+            console.log(" data inside Display news service::: "+JSON.stringify(data)); 
         Array.prototype.forEach.call(data,(data:News)  => {
                 console.log(" data inside Display news service::: "+JSON.stringify(data));
+                
                 let newsObj = new News(
                     data.newsId,
                     data.title, 
                     data.author,
                     data.description,
                     data.urlToImage, 
-                    data.newsSource
+                    data.newssource,
+                    data.reminder,
                 );
                 console.log("newsObj inside DisplayNewsService::: "+JSON.stringify(newsObj));
                 cardList.push(newsObj)        

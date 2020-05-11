@@ -31,6 +31,7 @@ const DisplayNewsSourceService = async () => {
                     data.newsSourceName,
                     data.newsSourceDesc,
                     data.newsSourceCreatedBy,
+                    data.newsSourceCreationDate,
                 );
                 console.log("newsSrcObj inside DisplayNewsSourceService::: "+JSON.stringify(newsSrcObj));
                 cardList.push(newsSrcObj)

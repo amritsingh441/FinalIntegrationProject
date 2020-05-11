@@ -11,6 +11,7 @@ import CardActions from '@material-ui/core/CardActions/CardActions';
 import DeleteNewsService from '../../service/DeleteNewsService';
 import DisplayNewsService from '../../service/DisplayNewsService';
 import UpdateNews from '../updatenews/UpdateNews';
+import ReminderDisplay from '../reminder/ReminderDisplay';
 
 const useStyles = makeStyles({
     media: {
@@ -22,6 +23,7 @@ const DisplayNewsCard = (props:any) => {
     const classes = useStyles(); 
     let currentPageName = "AllNews";
     console.log("props data in DisplayNewsCard ::: "+JSON.stringify(props.nData))
+    console.log("News Source data in DisplayNewsCard ::: "+JSON.stringify(props.nData.newssource))
     const handleDeleteNews = (newsId:any) => {
         const deleteOperation = DeleteNewsService(newsId,currentPageName);
         deleteOperation.then(response => {
@@ -51,6 +53,7 @@ return <Grid item sm={3} container direction = "row" alignItems="center" justify
                 <CardActions>
                 <Button size="small" variant="contained" color="primary" onClick={()=>handleDeleteNews(props.nData.newsId)}>Delete News</Button>
                <UpdateNews newsData={props.nData} refreshNewsAfterUpdate={props.refreshNewsAfterUpdate}/>
+             <ReminderDisplay data={props.nData}/>
              </CardActions>  
             </CardContent>
         </Card>
