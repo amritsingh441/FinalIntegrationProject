@@ -13,7 +13,12 @@ const DisplayNewsSourceService = async () => {
         }
     }).then(resp => {
         console.log("resp json data in DisplayNewsSourceService::: "+JSON.stringify(resp));
-        return resp.json();
+        if(resp.status === 200){
+            return resp.json();
+        }else{
+            return resp;
+        }
+        
     }).then(data => {
         console.log(" data before then in DisplayNewsSourceService ::: "+JSON.stringify(data));
         let cardList: any = [];

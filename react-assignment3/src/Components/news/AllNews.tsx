@@ -29,11 +29,12 @@ const AllNews = (props:any) => {
 
       console.log("news data in AllNews Component:::"+JSON.stringify(news));
        let newsCardsList = news.map((newsData: News) =>
-            <DisplayNewsCard key={newsData.urlToImage} nData={newsData} refreshNewsAfterUpdate={refreshNewsAfterUpdate}></DisplayNewsCard>)
-  
+            <DisplayNewsCard  nData={newsData} refreshNewsAfterUpdate={refreshNewsAfterUpdate}></DisplayNewsCard>)
+          //removing key --> key={newsData.urlToImage}
       return (
             <Grid container  direction = "row" item sm={12} alignItems="center" justify="space-evenly" style={{marginTop:'16vh'}}>
-                        {newsCardsList}
+                       
+                   {newsCardsList}     
             </Grid>
             )
 

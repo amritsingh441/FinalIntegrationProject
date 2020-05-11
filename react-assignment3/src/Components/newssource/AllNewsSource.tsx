@@ -38,8 +38,9 @@ const AllNewsSource = () => {
       
       return (
             <Grid container  direction = "row" item sm={12} alignItems="center" justify="space-evenly" style={{marginTop:'16vh'}}>
-                      
-                        {newsSrcCardsList}
+                
+                 {newsSrcCardsList}       
+                       
             </Grid>
             )
 
