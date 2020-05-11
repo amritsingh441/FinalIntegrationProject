@@ -4,6 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import CardMedia from '@material-ui/core/CardMedia';
 import AddNewsService from '../../service/AddNewsService';
+import AddNewsSourceService from '../../service/AddNewsSourceService';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -33,6 +34,7 @@ return <Grid item sm={3} container direction = "row" alignItems="center" justify
                 </Typography>
                 <CardActions>
                 <Button size="small" variant="contained" color="primary" onClick ={()=>AddNewsService(props.nData)}>Add News</Button>
+                <Button size="small" variant="contained" color="primary"onClick ={()=>AddNewsSourceService(props.nData)}>Add News Source</Button>
              </CardActions>  
             </CardContent>
         </Card>

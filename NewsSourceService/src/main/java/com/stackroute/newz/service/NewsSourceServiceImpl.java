@@ -45,10 +45,23 @@ public class NewsSourceServiceImpl implements NewsSourceService {
 
 	@Override
 	public boolean addNewsSource(NewsSource newsSource) {
-		NewsSource newsSourceObj = newsSourceRepo.insert(newsSource);
-		if(newsSourceObj!=null) {
-			return true;
+		List<NewsSource> newsSrcList = newsSourceRepo.findAllNewsSourceByNewsSourceCreatedBy(newsSource.getNewsSourceCreatedBy());
+		if(newsSrcList != null) {
+			Optional<NewsSource> newsSrc = newsSrcList.stream().filter(ns -> ns.getNewsSourceName().equals(newsSource.getNewsSourceName())).findAny();
+		if(newsSrc.isPresent()) {
+			 return false;
+		}else {
+			NewsSource newsSrcObj = newsSourceRepo.insert(newsSource);
+			if(newsSrcObj!= null) {
+				return true;
+			}
 		}
+		}else {
+			NewsSource newsSourceObj = newsSourceRepo.insert(newsSource);
+			if(newsSourceObj!=null) {
+				return true;
+			}
+		}		
 		return false;
 	}
 

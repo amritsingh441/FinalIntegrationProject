@@ -52,7 +52,7 @@ public class NewsServiceImpl implements NewsService {
 			newUserNews = optionalUserNewsobj.get();
 			if(newUserNews!=null) {
 				for (News newsData : newUserNews.getNewslist()) {
-					if(newsData.getNewsId() == news.getNewsId()) {
+					if(newsData.getTitle().equals(news.getTitle())) {
 						return false;
 					}
 				}

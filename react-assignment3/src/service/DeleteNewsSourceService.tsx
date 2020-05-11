@@ -1,5 +1,5 @@
 
-const DeleteNewsSourceService = async (props:any) =>{
+const DeleteNewsSourceService = async (props:any,pageName:string) =>{
     console.log("news data in AddNewsSourceService :: "+JSON.stringify(props));
     let url = 'http://localhost:8091/NewsSourceService/api/v1/newssource/'+props;
     console.log("delete news source URL ::"+url)
@@ -13,9 +13,13 @@ const DeleteNewsSourceService = async (props:any) =>{
         },
     }).then(response =>{
         if(response['status'] === 200){
-            alert("News Source deleted successfully....")
+            if(pageName === "AllNewsSource"){
+                alert("News Source deleted successfully....")
+            }  
         }else{
+            if(pageName === "AllNewsSource"){
            alert("News Source not found...")
+            } 
         }
         return response;
     })

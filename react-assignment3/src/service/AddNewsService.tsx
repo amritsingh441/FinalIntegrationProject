@@ -30,14 +30,9 @@ import DashboardNews from '../model/DashboardNews';
     }).then(response => {
         console.log("Response in addNewsService :: "+JSON.stringify(response))
         if (response['status'] == 201) {
-            const addNewsSrc = AddNewsSourceService(newsData.newsSource);
-            addNewsSrc.then(result => {
-                if (result['status'] == 201) {
-                    alert("News and NewsSource Added!!!!. Please Check data in respective tabs..")
-                }
-               
-            })
-            
+            alert("News Added successfully ....")
+          }else{
+              alert("News already exists.....")
           }
     })
    

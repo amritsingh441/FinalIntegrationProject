@@ -18,8 +18,9 @@ const useStyles = makeStyles({
 
 const DisplayNewsSrcCard = (props:any) => {  
     const classes = useStyles(); 
+    let currentPageName = "AllNewsSource";
     const handleDeleteNewsSrc = (newsSrcId:any) => {
-        const deleteOperation = DeleteNewsSourceService(newsSrcId);
+        const deleteOperation = DeleteNewsSourceService(newsSrcId,currentPageName);
         deleteOperation.then(response => {
             if(response['status'] === 200){
                 const displayNewsSrcData = DisplayNewsSourceService();

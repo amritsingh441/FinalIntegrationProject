@@ -1,5 +1,6 @@
+import DeleteNewsSourceService from './DeleteNewsSourceService';
 
-const DeleteNewsService = async (props:any) =>{
+const DeleteNewsService = async (props:any,pageName:string) =>{
     console.log("news data in DeleteNewsService :: "+props);
     let url = 'http://localhost:8091/NewsService/api/v1/news/'+localStorage.getItem("UserName")+'/'+props;
     console.log("delete news URL ::"+url)
@@ -13,7 +14,14 @@ const DeleteNewsService = async (props:any) =>{
         },
     }).then(response =>{
         if(response['status'] === 200){
-           alert("News deleted successfully....")
+            const deleteNewsSrc = DeleteNewsSourceService(props,pageName);
+            deleteNewsSrc.then(response => {
+                if(response['status'] === 200){
+                        alert("News and News Source deleted successfully....")
+                }else{
+                    alert("News deleted but News Source not found....")
+                }
+            })
         }else{
             alert("News not found...")
         }

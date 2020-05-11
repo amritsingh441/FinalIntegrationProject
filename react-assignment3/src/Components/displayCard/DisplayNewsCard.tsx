@@ -20,9 +20,10 @@ const useStyles = makeStyles({
 
 const DisplayNewsCard = (props:any) => {  
     const classes = useStyles(); 
+    let currentPageName = "AllNews";
     console.log("props data in DisplayNewsCard ::: "+JSON.stringify(props.nData))
     const handleDeleteNews = (newsId:any) => {
-        const deleteOperation = DeleteNewsService(newsId);
+        const deleteOperation = DeleteNewsService(newsId,currentPageName);
         deleteOperation.then(response => {
             if(response['status'] === 200){
                 const displayNewsData = DisplayNewsService();
