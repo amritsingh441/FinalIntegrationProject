@@ -25,13 +25,16 @@ const useStyles = makeStyles({
     table: {
         minWidth: 650,
       },
+    marginCls: {
+      marginTop: '3vh',
+    },
   });
 
 const DisplayUserProfile = (props:any) => {  
     const classes = useStyles();  
 
 return <Grid item xs={12} container direction = "row" alignItems="center" justify="space-evenly">
-        <Container>
+        <Container className={classes.marginCls}>
         <Typography id = "tHeader2" component="div" variant="h6" color="textPrimary">
         User Profile Data
         </Typography>
