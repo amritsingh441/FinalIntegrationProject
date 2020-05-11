@@ -17,6 +17,7 @@ import {
 function App() {
   const [token,setToken] = useState('');
   const [page,setPage] = useState('Dashboard');
+  const [userName,setUserName] = useState('');
 
   const updateToken =(token:string) => {
     localStorage.setItem('token',token);
@@ -25,21 +26,23 @@ function App() {
   const updatePage =(page:string) => {
     setPage(page)
   }
-
+const updateUserName =(name:string) => {
+  localStorage.setItem('UserName',name);
+  setUserName(name)
+}
 const handleLogout =() => {
-  localStorage.removeItem("UserName");
-  localStorage.removeItem("token");
+  localStorage.clear();
   updateToken("");
 }
 
   return (
     <div>
       <Grid container direction = "column">
-      <Header token={token} handleLogout={handleLogout} updatePage={updatePage}></Header>
+      <Header token={token} handleLogout={handleLogout} updatePage={updatePage} userName={localStorage.getItem("UserName")}></Header>
         <Router>
           <Route exact path = '/' 
             component = {() =>(token)?<Redirect to = '/dashboard'></Redirect>
-                                    : <Login updateToken = {updateToken} />
+                                    : <Login updateToken = {updateToken} updateUserName={updateUserName}/>
                         } />
           <Route exact path = '/dashboard' 
             component = {

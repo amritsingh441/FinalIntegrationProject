@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
 
 const Header = (props:any) => {
   const classes = useStyles();
+  console.log("getting user name in header ..."+props.userName)
 const buttonShowHide=()=> {
 if(props.token){
   return <Grid id = "tHeader2" container  direction = "row" item sm={12} alignItems="center" justify="space-evenly">
@@ -32,7 +33,7 @@ if(props.token){
           <Button size="small" variant="contained" id="displayAllNewsSrcBtn"  onClick ={() => handlePageUpdate("AllNewsSource")}>News Source</Button>
           <Button size="small" variant="contained" id="logoutBtn"  onClick ={() => handleLogout()}>Logout</Button>   
           <Typography id = "tHeader11" component="div" variant="h6" align="center" className={classes.profileCls} onClick={() => handlePageUpdate("UserProfile")}>
-            Welcome {localStorage.getItem("UserName")}
+            Welcome {props.userName}
          </Typography>
          
           </Grid>

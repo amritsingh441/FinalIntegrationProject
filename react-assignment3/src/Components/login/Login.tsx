@@ -20,7 +20,7 @@ const Login = (props:any) =>{
     const classes = useStyles();
     const [username,setUserName] = useState("");
     const [password,setPassword] = useState('');
-
+    localStorage.clear();
   
     const handleOnChange = (event:any) => {
         event.preventDefault();
@@ -35,12 +35,9 @@ const Login = (props:any) =>{
     const handleLogin = () => {
         const user = new User(username,password);
         const auth = LoginService(user);
-        console.log("auth data ::"+JSON.stringify(auth))
         auth.then((data) => {
-            console.log("data in login ::"+JSON.stringify(data))
-            console.log("token after login click :: "+data.token)
             props.updateToken(data.token);
-            localStorage.setItem('UserName',username);
+            props.updateUserName(username);
         })
     }
 
