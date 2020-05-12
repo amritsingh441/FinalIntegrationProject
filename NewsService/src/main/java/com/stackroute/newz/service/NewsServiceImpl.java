@@ -63,7 +63,7 @@ public class NewsServiceImpl implements NewsService {
 				newUserNews.setUserId(news.getAuthor());
 			}
 			newUserNews.getNewslist().add(news);
-			UserNews savedUserNews = newsRepo.insert(newUserNews);
+			UserNews savedUserNews = newsRepo.save(newUserNews);
 			if(savedUserNews!=null) {
 				return true;
 			}
