@@ -70,7 +70,6 @@ public class UserProfileController {
 		} catch (UserProfileAlreadyExistsException e) {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
-		//return new ResponseEntity<>(HttpStatus.CONFLICT);
 		
 	}
 
