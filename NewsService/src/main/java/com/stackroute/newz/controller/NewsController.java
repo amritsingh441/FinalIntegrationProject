@@ -60,7 +60,7 @@ public class NewsController {
 	public ResponseEntity<?> addNews(@RequestBody News news){
 		boolean flag = newsService.addNews(news);
 		if(flag) {
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<>(flag,HttpStatus.CREATED);
 		}
 		return new ResponseEntity<>(HttpStatus.CONFLICT);
 	}

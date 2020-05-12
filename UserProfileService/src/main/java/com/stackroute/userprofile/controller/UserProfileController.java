@@ -64,11 +64,13 @@ public class UserProfileController {
 			UserProfile profile= userProfileService.registerUser(user);
 			if(profile!=null) {
 				return new ResponseEntity<>(profile,HttpStatus.CREATED);
+			}else {
+				throw new UserProfileAlreadyExistsException("Profile Already exists...");
 			}
 		} catch (UserProfileAlreadyExistsException e) {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
-		return new ResponseEntity<>(HttpStatus.CONFLICT);
+		//return new ResponseEntity<>(HttpStatus.CONFLICT);
 		
 	}
 
