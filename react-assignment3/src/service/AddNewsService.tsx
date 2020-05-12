@@ -24,7 +24,7 @@ import DashboardNews from '../model/DashboardNews';
         "reminder":reminderData,
        };
        console.log("final newsData in AddNewsService :: "+JSON.stringify(newsData));
-   return await fetch(url,{
+       return await fetch(url,{
         method:'POST',
         body:JSON.stringify(newsData),
         headers : {
@@ -36,7 +36,14 @@ import DashboardNews from '../model/DashboardNews';
     }).then(response => {
         console.log("Response in addNewsService :: "+JSON.stringify(response))
         if (response['status'] == 201) {
-            alert("News Added successfully ....")
+            const newsSrcAdd = AddNewsSourceService(newsSourceData);
+            newsSrcAdd.then(responseData => {
+                if(responseData['status'] === 201){
+                    alert("News and News Source Added successfully ....")
+                }else{
+                    alert("News data added but News Source could not be added ..")
+                }
+            })
           }else{
               alert("News already exists.....")
           }

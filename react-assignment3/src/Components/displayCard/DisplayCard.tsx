@@ -34,7 +34,7 @@ return <Grid item sm={3} container direction = "row" alignItems="center" justify
                 </Typography>
                 <CardActions>
                 <Button size="small" variant="contained" color="primary" onClick ={()=>AddNewsService(props.nData)}>Add News</Button>
-                <Button size="small" variant="contained" color="primary"onClick ={()=>AddNewsSourceService(props.nData)}>Add News Source</Button>
+        
              </CardActions>  
             </CardContent>
         </Card>

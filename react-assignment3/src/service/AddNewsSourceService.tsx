@@ -2,12 +2,15 @@ import NewsSource from "../model/NewsSource";
 
 const AddNewsSourceService = async (props:any) =>{
     console.log("news data in AddNewsSourceService :: "+JSON.stringify(props));
-    let newsSourceData = {
-        "newsSourceId":props.newsId,
-        "newsSourceName":props.title,
-        "newsSourceDesc":props.description,
-        "newsSourceCreatedBy":localStorage.getItem("UserName"),
-    }
+
+     let newsSourceData = {
+         "newsSourceId":props.newsSourceId,
+         "newsSourceName":props.newsSourceName,
+         "newsSourceDesc":props.newsSourceDesc,
+        "newsSourceCreatedBy":props.newsSourceCreatedBy,
+        "newsSourceCreationDate": new Date(),
+     }
+     
     let url = 'http://localhost:8091/NewsSourceService/api/v1/newssource';
     return await fetch(url,{
         method:'POST',
@@ -20,11 +23,7 @@ const AddNewsSourceService = async (props:any) =>{
         },
     }).then(response => {
         console.log("Response in addNewsSourceService :: "+JSON.stringify(response))
-        if (response['status'] == 201) {
-            alert("News Source Added successfully ....")
-          }else{
-              alert("News Source already exists.....")
-          }
+        return response;
     })
   
 
