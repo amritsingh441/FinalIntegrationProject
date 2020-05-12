@@ -22,7 +22,7 @@ cache:
 
 maven-test:
  stage: test
- script: "mvn -X test -DskipAllTests"
+ script: "mvn test"
  
 maven-build:
  stage: build
