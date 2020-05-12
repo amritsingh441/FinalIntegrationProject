@@ -2,27 +2,28 @@ image: 'maven:3-jdk-11'
 stages:
  - test
  - build
+ 
 services:
   - 'mysql:latest'
   - 'mongo:3.4-jessie'
+  
 variables:
-  MYSQL_DATABASE: "keepnote"
-  MYSQL_URL: "jdbc:mysql://localhost:3306/keepnote"
-  MYSQL_USER: "root"
-  MYSQL_PASSWORD: "root"
-  MYSQL_ROOT_PASSWORD: "root"
-  MONGO_DATABASENAME: keepnote
+  MYSQL_HOST: localhost
+  MYSQL_URL:  jdbc:mysql://localhost:3306/keepnote?createDatabaseIfNotExist=true&user=root&password=root
+  MYSQL_ROOT_PASSWORD: root
+  MONGO_DATABASE: keepnote
   MONGO_URL: "mongodb://localhost:27017/keepnote"
+  MONGO_HOST: localhost
 
 cache:
   paths:
     - .m2/repository
     - target
 
-
 maven-test:
  stage: test
  script: "mvn -X test -DskipAllTests"
+ 
 maven-build:
  stage: build
  script: "mvn package"
