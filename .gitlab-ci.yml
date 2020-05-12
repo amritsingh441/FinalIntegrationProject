@@ -6,12 +6,12 @@ services:
   - 'mysql:latest'
   - 'mongo:3.4-jessie'
 variables:
-  MYSQL_HOST: localhost
-  MYSQL_URL: jdbc:mysql://localhost:3306/keepnote?createDatabaseIfNotExist=true&user=root&password=root
-  MYSQL_ROOT_PASSWORD: root
-  MONGO_DATABASE: keepnote
+  MYSQL_URL: "jdbc:mysql://localhost:3306/keepnote?createDatabaseIfNotExist=true&user=root&password=root"
+  MYSQL_USER: "root"
+  MYSQL_PASSWORD: "root"
+  MYSQL_ROOT_PASSWORD: "root"
+  MONGO_DATABASENAME: keepnote
   MONGO_URL: "mongodb://localhost:27017/keepnote"
-  MONGO_HOST: localhost
 
 cache:
   paths:
