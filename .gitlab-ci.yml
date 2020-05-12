@@ -7,7 +7,7 @@ services:
   - 'mongo:3.4-jessie'
 variables:
   MYSQL_DATABASE: "keepnote"
-  MYSQL_URL: "jdbc:mysql://localhost:3306/keepnote"
+  MYSQL_URL: "jdbc:mysql://mysql/keepnote"
   MYSQL_USER: "root"
   MYSQL_PASSWORD: "root"
   MYSQL_ROOT_PASSWORD: "root"
