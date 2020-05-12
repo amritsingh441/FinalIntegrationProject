@@ -22,7 +22,7 @@ cache:
 
 maven-test:
  stage: test
- script: "mvn test"
+ script: "mvn -X test"
 maven-build:
  stage: build
  script: "mvn package"
