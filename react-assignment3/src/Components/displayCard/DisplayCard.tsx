@@ -33,7 +33,7 @@ return <Grid item sm={3} container direction = "row" alignItems="center" justify
                 Author : {props.nData.author}
                 </Typography>
                 <CardActions>
-                <Button size="small" variant="contained" color="primary" onClick ={()=>AddNewsService(props.nData)}>Add News</Button>
+                <Button size="small" variant="contained" color="primary" onClick ={()=>AddNewsService(props.nData)}>Add News & NewsSource</Button>
         
              </CardActions>  
             </CardContent>

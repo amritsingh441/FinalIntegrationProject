@@ -33,6 +33,7 @@ const updateUserName =(name:string) => {
 const handleLogout =() => {
   localStorage.clear();
   updateToken("");
+  setPage('Login');
 }
 
   return (

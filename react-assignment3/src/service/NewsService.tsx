@@ -20,6 +20,7 @@ const NewsService = () => {
                     article.author,
                     article.urlToImage,
                     article.description,
+                    article.source.name
                 );
                 cardList.push(newsObj)
             })

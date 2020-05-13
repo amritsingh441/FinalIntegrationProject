@@ -40,15 +40,45 @@ const Register = (props:any) => {
   const [emailId, setEmailId] = useState('');
   const [password, setPassword] =useState('');
   const [cPassword, setCPassword] = useState('');
-  const [errorText,setErrorText] = useState('');
-
+  const [userNameError,setUserNameError] = useState(false)
+  const [userNameErrorText,setUserNameErrorText] = useState('');
+  const [passwordError,setPasswordError] = useState(false)
+  const [passwordErrorText,setPasswordErrorText] = useState('');
+  const [cPasswordError,setCpasswordError] = useState(false)
+  const [cPasswordErrorText,setCpasswordErrorText] = useState('');
+  
   const classes = useStyles();
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+  const handleCancelOperation = () => {
+    setUserId('')
+    setPassword('')
+    setCPassword('')
+    setFirstName('')
+    setLastName('')
+    setContact('')
+    setEmailId('')
+    setUserNameError(false)
+    setUserNameErrorText('')
+    setPasswordError(false)
+    setPasswordErrorText('')
+    setCpasswordError(false)
+    setCpasswordErrorText('')
+    handleClose()
+  }
+
   const handleOnChange = (event:any) => {
+    let validationPattern = /^[0-9a-zA-Z]+$/;
    if(event.target.name === "userId"){
-    setUserId(event.target.value)
+    setUserNameError(false)
+    setUserNameErrorText('')
+     if(event.target.value.match(validationPattern)){
+      setUserId(event.target.value)     
+     }else{
+       setUserId('')
+     }
   }
   if(event.target.name === "firstName"){
     setFirstName(event.target.value)
@@ -63,13 +93,50 @@ const Register = (props:any) => {
     setEmailId(event.target.value)
   }
   if(event.target.name === "password"){
-    setPassword(event.target.value)
+    setPasswordError(false)
+    setPasswordErrorText('')
+    if(event.target.value.match(validationPattern)){
+      setPassword(event.target.value)
+     }else{
+      setPassword('')
+     }
   }
   if(event.target.name === "cPassword"){
-    setCPassword(event.target.value)
+    setCpasswordError(false)
+    setCpasswordErrorText('')
+    if(event.target.value.match(validationPattern)){
+      setCPassword(event.target.value)
+     }else{
+      setCPassword('')
+     }
   }
 }
-
+const registrationBtnAction = () =>{
+  if(userId.length>0 && password.length>0 && cPassword.length>0){
+    setUserNameError(false)
+    setUserNameErrorText('')
+    setPasswordError(false)
+    setPasswordErrorText('')
+    setCpasswordError(false)
+    setCpasswordErrorText('')
+    handleRegistration();   
+  }else{
+    if(userId.length === 0 || password.length===0 || cPassword.length===0){
+      if(userId.length === 0){
+        setUserNameError(true);
+        setUserNameErrorText("Please provide alphanumeric User Name value")
+      }
+      if(password.length===0){
+        setPasswordError(true)
+        setPasswordErrorText("Please provide alphanumeric Password value")
+      }
+      if(cPassword.length===0){
+        setCpasswordError(true)
+        setCpasswordErrorText("Please provide alphanumeric Confirm Password value")
+      }
+    }
+  }
+}
 const handleRegistration = () => {
   const user = new User(userId,password);
         let registerAction = RegistrationService(user);
@@ -110,7 +177,7 @@ const handleRegistration = () => {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
          <FormControl variant="outlined" className={classes.formControl}>
-          <TextField id="uId" name="userId" error={errorText.length === 0 ? false : true} label="User Name" variant="outlined" onChange={handleOnChange}/>
+          <TextField id="uId" name="userId" error={userNameError} helperText={userNameErrorText} label="User Name" variant="outlined" onChange={handleOnChange}/>
         </FormControl> 
           <FormControl variant="outlined" className={classes.formControl}>
           <TextField id="uFirstName" name="firstName" label="First Name" variant="outlined" onChange={handleOnChange} />
@@ -125,18 +192,18 @@ const handleRegistration = () => {
         <TextField id="uEmailId" name="emailId" type="email" label="Email ID" variant="outlined" onChange={handleOnChange}/>
         </FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
-        <TextField id="uPassword" name="password" type="password" label="Password" variant="outlined" onChange={handleOnChange}/>
+        <TextField id="uPassword" name="password" error={passwordError} helperText={passwordErrorText} type="password" label="Password" variant="outlined" onChange={handleOnChange}/>
         </FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
-        <TextField id="uConfirmPassword"  name="cPassword" label="Confirm Password" variant="outlined" onChange={handleOnChange}/>
+        <TextField id="uConfirmPassword"  name="cPassword" error={cPasswordError} helperText={cPasswordErrorText} label="Confirm Password" variant="outlined" onChange={handleOnChange}/>
         </FormControl>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button id ="cancelBtn" variant="contained"  color="primary" autoFocus onClick={handleClose}>
+          <Button id ="cancelBtn" variant="contained"  color="primary" autoFocus onClick={handleCancelOperation}>
             Cancel
           </Button>
-          <Button id ="registerBtn" variant="contained"  color="primary" autoFocus onClick={handleRegistration}>
+          <Button id ="registerBtn" variant="contained"  color="primary" autoFocus onClick={registrationBtnAction}>
             Confirm
           </Button>
         </DialogActions>

@@ -3,11 +3,11 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import NewsService from '../../service/NewsService';
 import DisplayCard from '../../Components/displayCard/DisplayCard';
-import News from '../../model/News';
+import DashboardNews from '../../model/DashboardNews';
 import Grid from '@material-ui/core/Grid';
 
 const Dashboard = () => {
-      const [news, setNews] = useState<News[]>([]);
+      const [news, setNews] = useState<DashboardNews[]>([]);
       const newsData = NewsService();
       newsData.then(data => { 
             return data }).then(res => {
@@ -16,7 +16,7 @@ const Dashboard = () => {
                   setNews(newsObjList)
             }
       })
-      let newsCardsList = news.map((newsData: News) =>
+      let newsCardsList = news.map((newsData: DashboardNews) =>
             <DisplayCard key={newsData.urlToImage} nData={newsData}></DisplayCard>)
       return (<Grid container  direction = "row" item sm={12} alignItems="center" justify="space-evenly" style={{marginTop:'16vh'}}>
                         {newsCardsList}

@@ -6,7 +6,7 @@ import DashboardNews from '../model/DashboardNews';
     let url = 'http://localhost:8091/NewsService/api/v1/news';
     let newsSourceData = {
         "newsSourceId":news.newsId,
-        "newsSourceName":news.title,
+        "newsSourceName":news.newsSourceName,
         "newsSourceDesc":news.description,
         "newsSourceCreatedBy":localStorage.getItem("UserName"),
     }
@@ -41,7 +41,7 @@ import DashboardNews from '../model/DashboardNews';
                 if(responseData['status'] === 201){
                     alert("News and News Source Added successfully ....")
                 }else{
-                    alert("News data added but News Source could not be added ..")
+                    alert("News data added but News Source could not be added or already present ..")
                 }
             })
           }else{
