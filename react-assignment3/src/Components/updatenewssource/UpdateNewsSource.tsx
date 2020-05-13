@@ -60,9 +60,9 @@ const handleUpdateNewsSource = () =>{
     handleClose();
 }
 const handleNewsSourceDataChange = (event:any) =>{
-    if(event.target.name === 'newsSourceName'){
-      setNewsSrcName(event.target.value)
-    }
+    // if(event.target.name === 'newsSourceName'){
+    //   setNewsSrcName(event.target.value)
+    // }
     if(event.target.name === 'newsSourceDesc'){
       setNewsSrcDesc(event.target.value)
     }
@@ -81,7 +81,7 @@ const handleNewsSourceDataChange = (event:any) =>{
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
         <FormControl variant="outlined" className={classes.formControl}>
-        <TextField id="title" name="newsSourceName" value={newsSrcName} label="News Source Name" variant="outlined" onChange={handleNewsSourceDataChange} />
+        <TextField id="title" disabled name="newsSourceName" value={newsSrcName} label="News Source Name" variant="outlined"/>
         </FormControl>
         <br/> 
         <FormControl variant="outlined" className={classes.formControl}>
