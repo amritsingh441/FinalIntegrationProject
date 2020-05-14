@@ -74,7 +74,7 @@ return <Grid item xs={12} container direction = "row" alignItems="center" justif
             </TableRow>
             <TableRow>
             <TableCell align="left"> 
-            <UpdateUserProfile userProfileData={props.uData} refreshUserProfileUpdate={props.refreshUserProfileUpdate}/>
+            <UpdateUserProfile id="updateUserProfileBtn" userProfileData={props.uData} refreshUserProfileUpdate={props.refreshUserProfileUpdate}/>
             </TableCell>
             </TableRow>
         </TableBody>
