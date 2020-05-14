@@ -119,12 +119,21 @@ public class NewsServiceImpl implements NewsService {
 				Optional<News> newsOptObj =	uNewsObj.get().getNewslist().stream()
 						.filter(n -> n.getNewsId() == newsId).findAny();
 				if(newsOptObj.isPresent()){
+					List<News> updatedNewsList = new ArrayList<News>();
 					List<News> newsList = uNewsObj.get().getNewslist().stream()
 										.filter(newsObj -> newsObj.getNewsId()!=newsId)
 										.collect(Collectors.toList());
-					newsList.add(news);
+					for(News newsObj : newsList) {
+						if(newsObj.getNewssource().getNewsSourceName().equals(news.getNewssource().getNewsSourceName())) {
+							newsObj.getNewssource().setNewsSourceDesc(news.getNewssource().getNewsSourceDesc());
+							updatedNewsList.add(newsObj);
+						}else {
+							updatedNewsList.add(newsObj);
+						}
+					}
+					updatedNewsList.add(news);
 					uNewsObj.get().setUserId(userId);
-					uNewsObj.get().setNewslist(newsList);
+					uNewsObj.get().setNewslist(updatedNewsList);
 					newsRepo.save(uNewsObj.get());
 					return news;
 				}

@@ -31,7 +31,7 @@ public class NewsSourceServiceImpl implements NewsSourceService {
 	 * object using the new keyword.
 	 */
 	
-	@Autowired
+	
 	private NewsSourceRepository newsSourceRepo;
 
 	@Autowired
