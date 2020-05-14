@@ -12,7 +12,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import UpdateNewsSourceService from '../../service/UpdateNewsSourceService';
+import UpdateNewsService from '../../service/UpdateNewsService';
 import DisplayNewsSourceService from '../../service/DisplayNewsSourceService';
+import GetNewsFromNewsIdService from '../../service/GetNewsFromNewsIdService';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,11 +52,37 @@ const handleUpdateNewsSource = () =>{
     updateNewsSource.then(response => {
        console.log("response in UpdateNews component after update call :: "+JSON.stringify(response));
     if(response['status'] === 200){
+      console.log("before new service call ...")
+      const getNewsByNewsId = GetNewsFromNewsIdService(updateNewsSourceObj.newsSourceId);
+      getNewsByNewsId.then(data => {
+        console.log("Data from getNewsByNewsId service :: "+JSON.stringify(data));
+        if(data){
+          let updatedNewsObj = {
+              "newsId":data.newsId,
+              "title": data.title,
+              "author":data.author,
+              "description":data.description,
+              "urlToImage": data.urlToImage,
+              "newsSource":updateNewsSourceObj,
+              "reminder":data.reminder,
+          }
+          let currentPageName = "NewsSource";
+          const updateNewsData = UpdateNewsService(updatedNewsObj,currentPageName)
+          updateNewsData.then(response => {
+            if(response['status'] === 200){
+              alert("News data updated as per News Source...")
+            }
+          })
+        }
+      })
+      alert("News Source updated .... ")
       const displayNewsSrcData = DisplayNewsSourceService();
       displayNewsSrcData.then(res => {
        let newsObjList = [...res];
       props.refreshNewsSourceAfterUpdate(newsObjList);
       })
+    }else{
+      alert("News Source Not found ...")
     }
       })
     handleClose();

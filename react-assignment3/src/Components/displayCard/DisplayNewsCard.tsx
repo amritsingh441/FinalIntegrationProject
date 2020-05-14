@@ -41,14 +41,17 @@ return <Grid item sm={3} container direction = "row" alignItems="center" justify
     <Card>
             <CardContent>
             <CardMedia className={classes.media} image={props.nData.urlToImage} id="imageUrl"></CardMedia>
-                <Typography id = "tHeader2" component="p" variant="body2" color="textSecondary">
+                <Typography id = "tHeader1" component="p" variant="body2" color="textSecondary">
                 Title : {props.nData.title} 
                 </Typography>
-                <Typography id = "tHeader3" component="p" variant="body2" color="textSecondary">
+                <Typography id = "tHeader2" component="p" variant="body2" color="textSecondary">
                 Description : {props.nData.description} 
                 </Typography>
-                <Typography id = "tHeader4" component="p" variant="body2" color="textSecondary">
+                <Typography id = "tHeader3" component="p" variant="body2" color="textSecondary">
                 Author : {props.nData.author}
+                </Typography>
+                <Typography id = "tHeader4" component="p" variant="body2" color="textSecondary">
+                News Source Description : {props.nData.newssource.newsSourceDesc}
                 </Typography>
                 <CardActions>
                 <Button size="small" variant="contained" color="primary" onClick={()=>handleDeleteNews(props.nData.newsId)}>Delete News</Button>

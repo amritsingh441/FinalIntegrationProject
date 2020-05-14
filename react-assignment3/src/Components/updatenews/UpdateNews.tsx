@@ -52,8 +52,9 @@ const handleUpdateNews = () =>{
       "newsSource":props.newsData.newssource,
       "reminder":props.newsData.reminder,
   }
+
   console.log("updated news data in UpdateNewsComp .."+JSON.stringify(updateNewsObj))
-    const updateNews = UpdateNewsService(updateNewsObj);
+    const updateNews = UpdateNewsService(updateNewsObj,"News");
     updateNews.then(response => {
       if(response['status'] === 200){
         console.log("response in UpdateNews component after update call :: "+JSON.stringify(response));
@@ -100,6 +101,10 @@ const handleNewsDataChange = (event:any) =>{
         <br/> 
         <FormControl variant="outlined" className={classes.formControl}>
         <TextField id="newsAuthor" disabled name="author" value={props.newsData.author} label="Author" variant="outlined" />
+        </FormControl>
+        <br/> 
+        <FormControl variant="outlined" className={classes.formControl}>
+        <TextField id="newsSrcDesc" disabled  value={props.newsData.newssource.newsSourceDesc} label="News Source Description" variant="outlined" />
         </FormControl>
         <br/> 
           </DialogContentText>

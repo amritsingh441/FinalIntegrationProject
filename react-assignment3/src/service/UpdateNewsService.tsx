@@ -1,6 +1,6 @@
 import DisplayNewsService from './DisplayNewsService';
 
-const UpdateNewsService = async (props:any) =>{
+const UpdateNewsService = async (props:any,pageName:string) =>{
     console.log("news id & props in UpdateNewsService :: "+JSON.stringify(props));
     let url = 'http://localhost:8091/NewsService/api/v1/news/'+localStorage.getItem("UserName")+'/'+props.newsId;
     console.log("UpdateNewsService news URL ::"+url)
@@ -14,12 +14,15 @@ const UpdateNewsService = async (props:any) =>{
         'Authorization':"Bearer "+localStorage.getItem('token'),
         },
     }).then(response =>{
-        if(response['status'] === 200){
-            alert("News updated successfully...")
-          
-        }else{
-           alert("News not found...")
+        if(pageName === "News"){
+            if(response['status'] === 200){
+                alert("News updated successfully...")
+              
+            }else{
+               alert("News not found...")
+            }
         }
+        
         return response;
     })
     //return updateNewsResponse;

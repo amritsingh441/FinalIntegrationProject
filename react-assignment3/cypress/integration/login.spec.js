@@ -4,8 +4,8 @@ describe("UI Testing for login component", () => {
     })
 
     it("User name validation success", () => {
-        cy.get('input[id=userId]').type('admin');
-        cy.get('input[id=usrPassword]').type('password');
+        cy.get('input[id=userId]').type('amrit');
+        cy.get('input[id=usrPassword]').type('root123');
         cy.get('#loginBtn').click();
     })
 

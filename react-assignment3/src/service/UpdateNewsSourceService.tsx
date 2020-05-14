@@ -1,4 +1,4 @@
-import DisplayNewsSourceService from './DisplayNewsSourceService'
+
 
 const UpdateNewsSourceService = async (props:any) =>{
     console.log("news source id & props in UpdateNewsSourceService :: "+JSON.stringify(props));
@@ -14,11 +14,12 @@ const UpdateNewsSourceService = async (props:any) =>{
         'Authorization':"Bearer "+localStorage.getItem('token'),
         },
     }).then(response =>{
-        if(response['status'] === 200){
-            alert("News Source updated successfully....")   
-        }else{
-            alert("News Source Not found...")
-        }
+        // if(response['status'] === 200){
+           
+        //     alert("News Source updated successfully....")   
+        // }else{
+        //     alert("News Source Not found...")
+        // }
         return response;
     })
     //return updateNewsSourceResponse;
